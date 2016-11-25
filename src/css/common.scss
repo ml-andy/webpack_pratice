@@ -1,0 +1,8 @@
+@import "base.scss";
+$color:#000;
+.wrapper{
+    @include r(500px,500px);
+    background-color: $color;
+    display: flex;
+}
+@import "reset.scss";
