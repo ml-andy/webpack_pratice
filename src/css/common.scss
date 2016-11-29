@@ -1,8 +1,28 @@
-@import "base.scss";
-$color:#000;
+@import "_base.scss";
+@import "_reset.scss";
+$color:#ccc;
 .wrapper{
     @include r(500px,500px);
     background-color: $color;
     display: flex;
 }
-@import "reset.scss";
+.popup2{
+    @include alt(100px,50px,600px);
+    background-color: red;
+    .b{
+        @include am(50px,25px);
+        @include font(16px,25px,#fff);
+        text-align: center;
+    }
+    .c{
+        @include r(50px,25px);
+        @include font(16px,25px,#fff);
+        text-align: center;
+        background-color: blue;
+    }
+}
+.popup{
+    @include r(300px,250px);
+    background-color: steelblue;
+    margin-left: 100px;
+}

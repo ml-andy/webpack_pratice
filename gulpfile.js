@@ -10,10 +10,12 @@ var WebpackDevServer = require("webpack-dev-server");
 
 //Event
 gulp.task('connect', function() {
-  $.connect.server({
-  	root: 'dist/',
-  	livereload: true
-  });
+	$.connect.server({
+	root: 'dist/',
+	livereload: true
+	});
+	gulp.src('./dist/')
+		.pipe($.open({uri: 'http://localhost:8080/'}))
 });
 gulp.task('imageminJPG', function () {
 	gulp.src('src/images/**/*.jpg')
@@ -35,6 +37,12 @@ gulp.task('uploadHTML', function () {
 		.pipe(gulp.dest('dist'))
 		.pipe($.connect.reload());
 });
+gulp.task('js', function () {
+	gulp.src('dist/js/**/*.js')
+		.pipe($.plumber())
+		.pipe(gulp.dest('dist/js'))
+		.pipe($.connect.reload());
+});
 gulp.task('libjs', function () {
 	gulp.src('src/lib/*.js')
 		.pipe($.changed('dist/lib'))
@@ -42,7 +50,13 @@ gulp.task('libjs', function () {
 		.pipe($.connect.reload());
 });
 gulp.task('uploadphp', function () {
-	gulp.src('src/*.php')
+	gulp.src('src/**/*.php')
+		.pipe($.changed('dist'))
+		.pipe(gulp.dest('dist'))
+		.pipe($.connect.reload());
+});
+gulp.task('uploadaspx', function () {
+	gulp.src('src/**/*.aspx')
 		.pipe($.changed('dist'))
 		.pipe(gulp.dest('dist'))
 		.pipe($.connect.reload());
@@ -56,19 +70,18 @@ gulp.task("webpack", function(callback) {
         gutil.log( "[webpack]", stats.toString( { colors: true, progress: true, chunkModules: false }) );
     });
 	return gulp.src( './' )
-    // return gulp.src('src/**/*')
-	// 	.pipe(webpack( require('./webpack.config.js') ))
-	// 	.pipe(gulp.dest('dist'));
 });
 
-//AddListener
-gulp.task('default',['connect'], function() {
-	// gulp.watch(['src/css/*.scss'],['sass']);
-	// gulp.watch(['src/js/**/*.js'],['js']);
+gulp.task('watch',function(){
+	gulp.watch(['dist/js/**/*.js'],['js']);
 	gulp.watch(['src/lib/**/*.js'],['libjs']);
 	gulp.watch(['src/images/**/*.jpg'],['imageminJPG']);
 	gulp.watch(['src/images/**/*.png'],['imageminPNG']);
 	gulp.watch(['src/*.html'],['uploadHTML']);
 	gulp.watch(['src/*.php'],['uploadphp']);
-	gulp.watch(['src/**/*'],['webpack']);
+	gulp.watch(['src/*.aspx'],['uploadaspx']);
+	gulp.watch(['src/js/**/*','src/css/**/*'],['webpack']);
 });
+
+//AddListener
+gulp.task('default',['connect','watch','webpack']);

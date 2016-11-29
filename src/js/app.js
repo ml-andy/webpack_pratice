@@ -1,5 +1,5 @@
 var Index = require('./modules/Index.js');
-require('../css/common.scss');
+var appcss = require('../css/common.scss');
 
 $(function() {
 	var wrapper = $('.wrapper');

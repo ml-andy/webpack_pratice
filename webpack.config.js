@@ -2,13 +2,15 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const cssExtractText = new ExtractTextPlugin( "css/common.css" );
-const sassLoader = cssExtractText.extract( "css?sourceMap&minimize!postcss!sass");
+const sassLoader = cssExtractText.extract( 'style',"css?sourceMap&minimize!postcss?sourceMap!sass?sourceMap");
 const BabiliPlugin = require("babili-webpack-plugin");
 
 module.exports={
 	context: __dirname,
 	devtool: 'source-map',
-	entry: "./src/js/app.js",
+	entry: [
+		'./src/js/app.js'
+	],
 	output: {
 		path: __dirname + "/dist",
 		filename: "/js/app.min.js"

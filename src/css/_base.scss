@@ -128,7 +128,7 @@
   margin-bottom: $mbottom; 
   @content;
 }
-@mixin font($fs:15px,$lh:27px,$co:#FFF,$fw:normal,$ff:"微軟正黑體"){
+@mixin font($fs:15px,$lh:27px,$co:#FFF,$fw:normal,$ff:"Microsoft JhengHei"){
   font-size: $fs;
   line-height: $lh;
   font-weight: $fw;
@@ -136,7 +136,7 @@
   color: $co;
   @content;
 }
-@mixin fontvw($fs:15,$lh:27,$co:#FFF,$fw:normal,$ff:"微軟正黑體"){
+@mixin fontvw($fs:15,$lh:27,$co:#FFF,$fw:normal,$ff:"Microsoft JhengHei"){
   font-size: getVW($fs);
   line-height: getVW($lh);
   font-weight: $fw;

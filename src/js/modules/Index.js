@@ -1,18 +1,16 @@
-﻿var HeaderModel = require('./HeaderModel.js');
+﻿var Stage = require('./Stage.js');
 
-class Index {
+class Index extends Stage {
     constructor() {
-        console.log('Index constructor');
-        this.HeaderModel = new HeaderModel();
-        
-        $(window).load(function(){
-          this.window_load();
-        }.bind(this));
+        super();
+        // super().HeaderModel.test();
+        $(window).load(()=>{
+            this.window_load();
+        });
     }
     window_load(){
-      console.log('12345');
-
-      // $('.loading').fadeOut();
+        console.log('about load end');
+        super.window_load();
     }
 }
 
