@@ -7,7 +7,7 @@ class Stage {
     }
     window_load(){
       // this.HeaderModel.init();
-      console.log('loading FadeOut');
+      console.log('loading out');
     }
 }
 
