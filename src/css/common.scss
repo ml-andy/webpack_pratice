@@ -1,5 +1,5 @@
-@import "_base.scss";
-@import "_reset.scss";
+@import "base.scss";
+@import "reset.scss";
 $color:#ccc;
 .wrapper{
     @include r(500px,500px);
