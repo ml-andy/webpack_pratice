@@ -3,12 +3,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 let extractStyles = new ExtractTextPlugin('css/common.css')
+let extractHtml = new ExtractTextPlugin('[name].html')
 
 module.exports = {
 	context: __dirname,
 	devtool: 'source-map',
 	entry: {
-		app: './src/js/app.js',
+		index: './src/js/app.js',
+		about: './src/js/about.js',
 	},
 	output: {
 		path: __dirname + '/dist',
@@ -16,6 +18,12 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.pug$/,
+				loader: extractHtml.extract({
+				loader: ['html-loader', 'pug-html-loader?pretty&exports=false']
+				})
+			},
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
@@ -30,13 +38,13 @@ module.exports = {
 				loader: extractStyles.extract({
 					loader: [
 						{
-							loader: "css-loader"
+							loader: "css-loader?sourceMap"
 						},
 						{
-							loader: "postcss-loader"
+							loader: "postcss-loader?sourceMap"
 						},
 						{
-							loader: "sass-loader"
+							loader: "sass-loader?sourceMap"
 						}
 					]
 				})
@@ -52,10 +60,15 @@ module.exports = {
 					autoprefixer({
 						browsers: ['last 2 version', 'Explorer >= 10', 'Android >= 4']
 					})
-				]
+				],
+				sassLoader: {
+					includePaths: [__dirname + '/src']
+				},
+				context: '/'
 			}
 		}),
 		extractStyles,
+		extractHtml
 	],
 	devServer: {
 		contentBase: __dirname + '/dist',

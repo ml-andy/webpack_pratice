@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -129,11 +129,20 @@ class Stage {
 module.exports = Stage;
 
 /***/ },
-/* 4 */
+/* 4 */,
+/* 5 */
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 var Index = __webpack_require__(1);
-var appcss = __webpack_require__(0);
+__webpack_require__(0);
+__webpack_require__(5);
 
 class App {
 	constructor() {
@@ -147,9 +156,10 @@ class App {
 }
 
 $(()=>{
+	console.log('this is index');
     var app = new App();
 });
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=app.bundle.js.map
+//# sourceMappingURL=index.bundle.js.map

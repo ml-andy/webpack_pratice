@@ -1,6 +1,6 @@
 var Index = require('./modules/Index.js');
 require('../css/common.scss');
-require('../index.pug');
+require('../about.pug');
 
 class App {
 	constructor() {
@@ -14,6 +14,6 @@ class App {
 }
 
 $(()=>{
-	console.log('this is index');
+    console.log('this is about');
     var app = new App();
 });
