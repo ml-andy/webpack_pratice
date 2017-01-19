@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -136,13 +136,27 @@ module.exports = Stage;
 // removed by extract-text-webpack-plugin
 
 /***/ },
-/* 6 */,
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "943a7159982b6557846641051365fe57.jpg";
+
+/***/ },
 /* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "d1fec4fed1415a77a2f81c08c9686f03.png";
+
+/***/ },
+/* 8 */,
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 var Index = __webpack_require__(1);
 __webpack_require__(0);
 __webpack_require__(5);
+__webpack_require__(6);
+__webpack_require__(7);
 
 class App {
 	constructor() {

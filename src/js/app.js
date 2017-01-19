@@ -1,6 +1,8 @@
 var Index = require('./modules/Index.js');
 require('../css/common.scss');
 require('../index.pug');
+require('../images/fake_video.jpg');
+require('../images/fb_icon.png');
 
 class App {
 	constructor() {
