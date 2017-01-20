@@ -1,14 +1,14 @@
-var Index = require('./modules/Index.js');
 require('../css/common.scss');
-require('../index.pug');
-require('../images/fake_video.jpg');
-require('../images/fb_icon.png');
+var imgName = '1px';
+require('../images/'+imgName+'.jpg');
+require('../images/'+imgName+'.png');
 
 class App {
 	constructor() {
 		this.wrp = $('.wrapper');
 		switch (this.wrp.attr('data-page')) {
 			case 'index':
+				var Index = require('./Index.js');
 				this.index = new Index();
 			break;
 		}
@@ -16,6 +16,5 @@ class App {
 }
 
 $(()=>{
-	console.log('this is index');
     var app = new App();
 });

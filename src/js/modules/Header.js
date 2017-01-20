@@ -1,4 +1,4 @@
-﻿class HeaderModel {
+﻿class Header{
     constructor() {
         console.log('HeaderModel constructor');
         this.wrp = $('.wrapper');
@@ -8,4 +8,4 @@
     }
 }
 
-module.exports = HeaderModel;
+module.exports = Header;

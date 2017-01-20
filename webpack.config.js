@@ -4,24 +4,26 @@ const autoprefixer = require('autoprefixer');
 
 let extractStyles = new ExtractTextPlugin('css/common.css')
 let extractHtml = new ExtractTextPlugin('[name].html')
+let BabiliPlugin = require("babili-webpack-plugin")
 
 module.exports = {
 	context: __dirname,
 	devtool: 'source-map',
 	entry: {
 		index: './src/js/app.js',
-		about: './src/js/about.js',
+		// about: './src/js/about.js',
 	},
 	output: {
 		path: __dirname + '/dist',
-		filename: 'js/[name].bundle.js',
+		// filename: 'js/[name].js'
+		filename: 'js/app.js'
 	},
 	module: {
 		rules: [
 			{
 				test: /\.pug$/,
 				loader: extractHtml.extract({
-				loader: ['html-loader', 'pug-html-loader?pretty&exports=false']
+					loader: ['html-loader', 'pug-html-loader?pretty&exports=false']
 				})
 			},
 			{
@@ -52,7 +54,13 @@ module.exports = {
 			{
 				test: /.*\.(gif|png|jpe?g|svg)$/i,
 				loaders: [
-					'file-loader',
+					{
+						loader: 'file-loader',
+						options: {
+							limit: 2048,
+							name: "images/[name].[ext]?[hash:8]",
+						}
+					},
 					{
 						loader: 'image-webpack-loader',
 						query: {
@@ -66,14 +74,6 @@ module.exports = {
 						}
 					}
 				]
-			},
-			{
-				loader: 'file-loader',
-				include: 'src',
-				exclude: /node_modules/,
-				options: {
-					name : "[name].[ext]"
-				}
 			},
 		]
 	},
@@ -94,9 +94,25 @@ module.exports = {
 			}
 		}),
 		extractStyles,
-		extractHtml
+		extractHtml,
+		new webpack.HotModuleReplacementPlugin(),
+		//minimize
+		// new BabiliPlugin()
 	],
 	devServer: {
-		contentBase: __dirname + '/dist',
+		contentBase: __dirname + '/src',
+		port: 9000,
+		hot: true,
+		inline: true,
+		watchContentBase: true,
+		watchOptions:{
+			ignored: /images/
+		}
+		// proxy: {
+		// 	"/api": {
+		// 		target: "https://other-server.example.com",
+		// 		secure: false
+		// 	}
+		// }
 	}
 };
